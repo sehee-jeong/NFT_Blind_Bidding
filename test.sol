@@ -73,7 +73,7 @@ contract BlindAuction {
         ended = false; // reset in case of another auction
     }
 
-    uint256 public reservedPrice;
+    uint256 public reservedPrice = minimumPrice;
 
     // first bidding
     function first_bidding(uint256 suggestedprice) public onlyBefore(fir_bidEnd) {
@@ -81,15 +81,15 @@ contract BlindAuction {
         require (minimumPrice <= suggestedprice, "Error: Suggested price is lower than the previous price"); // check whether the money is suggested more than the minimum
         require (_balances >= suggestedprice, "Error: You don't have enough money to pay"); // check whether price suggested is lower than the money in my wallet
 
-        reservedPrice = minimumPrice; // for comparing
         if (reservedPrice < suggestedprice) { // find out the most highest bid
             reservedPrice = suggestedprice;
         }
     }
 
     // first reveal
-    function first_bidding_reveal(uint256 reservedPrice)
+    function first_bidding_reveal()
         public
+        view
         onlyAfter(fir_bidEnd)
         onlyBefore(fir_revealEnd)
         returns(uint) {
@@ -152,8 +152,8 @@ contract BlindAuction {
         _tokenPrice[tokenId] = highestBid;
         address _owner = _erc721.ownerOf(tokenId);
 
-        _erc20.transferFrom(payable(msg.sender), _owner, _tokenPrice[tokenId]);  // erc20:  buyer-price -> seller 
-        _erc721.transferFrom(_owner, payable(msg.sender), tokenId); // erc721: seller-token -> buyer 
+        _erc20.transferFrom(highestBidder, _owner, _tokenPrice[tokenId]);  // erc20:  buyer-price -> seller 
+        _erc721.transferFrom(_owner, highestBidder, tokenId); // erc721: seller-token -> buyer 
 
         emit AuctionEnded(highestBidder, highestBid); // emit event
         ended = true; // end the auction
