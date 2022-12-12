@@ -1,4 +1,4 @@
-# :necktie: NFT Blind Bidding
+# 🖥️: NFT Blind Bidding
 This project was made for the 2022-2 Blockchain Theory course at Hanyang University.<div>
 
 ## :pushpin: Abstract
