@@ -112,8 +112,8 @@ contract BlindAuction {
         uint _balances = _erc20.balanceOf(msg.sender);
         require(_balances >= price, "Error: You don't have enough money to pay");
         bids[msg.sender].push(Bid({
-            blindedBid: blindedBid,
-            deposit: price
+            blindedBid: blindedBid, 
+            deposit: price // price for check correct price is suggested later
         }));
     }
 
@@ -134,10 +134,10 @@ contract BlindAuction {
             (uint price, bytes32 secret) =
                     (prices[i], secrets[i]);
             if (bidToCheck.blindedBid != keccak256(abi.encodePacked(price, secret))) {
-                "Error: Something went wrong";
+                "Error: Something went wrong"; // In case price does not match
             }
             if (bidToCheck.deposit >= price) {
-                checkHighest(msg.sender, price);
+                checkHighest(msg.sender, price); // check whether it is the highest price
             }
             bidToCheck.blindedBid = bytes32(0);
         }
@@ -166,8 +166,8 @@ contract BlindAuction {
         if (highestBidder != address(0)) {
             pendingReturns[highestBidder] += highestBid;
         }
-        highestBid = price;
-        highestBidder = bidder;
+        highestBid = price; // store the highest price
+        highestBidder = bidder; // store the highest bidder's address
         return true;
     }
 }
