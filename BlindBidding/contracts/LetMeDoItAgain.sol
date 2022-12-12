@@ -27,8 +27,6 @@ contract BlindAuction {
     address public highestBidder;
     uint public highestBid;
 
-    mapping(address => uint) pendingReturns;
-
     event AuctionEnded(address winner, uint highestBid);
 
     error TooEarly(uint time);
@@ -162,9 +160,6 @@ contract BlindAuction {
     function checkHighest(address bidder, uint price) internal returns (bool success) {
         if (price <= highestBid) {
             return false;
-        }
-        if (highestBidder != address(0)) {
-            pendingReturns[highestBidder] += highestBid;
         }
         highestBid = price; // store the highest price
         highestBidder = bidder; // store the highest bidder's address
