@@ -134,7 +134,7 @@ contract BlindAuction {
             if (bidToCheck.blindedBid != keccak256(abi.encodePacked(price, secret))) {
                 "Error: Something went wrong"; // In case price does not match
             }
-            if (bidToCheck.deposit >= price) {
+            if (bidToCheck.deposit == price) {
                 checkHighest(msg.sender, price); // check whether it is the highest price
             }
             bidToCheck.blindedBid = bytes32(0);
