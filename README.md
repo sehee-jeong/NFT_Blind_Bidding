@@ -7,10 +7,7 @@ When the owner starts the bidding, the bidder cannot see each one's price, and o
 ## Contributers
 #### Park SeEun, 박세은, Department of Information Systems 
 #### Jung Sehee, 정세희, Department of Information Systems <div>
-
 <br>  
 ## Links
--------
 #### Youtube (https://youtube.com/watch?v=z76oYrNdgTU&feature=share)
-
 #### Presentation PPT (https://url.kr/qsvywf) 
