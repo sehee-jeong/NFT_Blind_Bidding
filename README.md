@@ -10,7 +10,7 @@ When the owner starts the bidding, the bidder cannot see each one's price, and o
 
 <br>  
 ## Links
-  
+-------
 #### Youtube (https://youtube.com/watch?v=z76oYrNdgTU&feature=share)
 
 #### Presentation PPT (https://url.kr/qsvywf) 
